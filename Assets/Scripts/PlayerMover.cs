@@ -9,11 +9,17 @@ public class PlayerMover : MonoBehaviour
 
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _jumpForce;
-    [SerializeField] private PlayerAnimator _playerAnimator;
+    [SerializeField] private PlayerAnimator _playerAnimator;    
 
     private bool _isAbleToJump = true;
     private float _lookRightAngle = 0;
     private float _lookLeftAngle = 180;
+    private Rigidbody2D _playerRigidbody;
+
+    private void Awake()
+    {
+        _playerRigidbody = this.GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
@@ -58,7 +64,7 @@ public class PlayerMover : MonoBehaviour
 
             _playerAnimator.RunJumpAnimation();
 
-            this.GetComponent<Rigidbody2D>().AddForce(Vector3.up * _jumpForce);        
+            _playerRigidbody.AddForce(Vector3.up * _jumpForce);        
         }                    
     }
 }

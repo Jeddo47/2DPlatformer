@@ -8,7 +8,7 @@ public class PlayerFollower : MonoBehaviour
     [SerializeField] private float _positionY;
     [SerializeField] private float _positionYBreakpoint;
 
-    void Update()
+    private void Update()
     {
         Vector3 chosenOffset = GetOffset();
 
