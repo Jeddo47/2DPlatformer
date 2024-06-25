@@ -40,20 +40,23 @@ public class PlayerMover : MonoBehaviour
 
         if (direction > 0)
         {
-            transform.rotation = Quaternion.AngleAxis(_lookRightAngle, Vector3.up);
-            transform.Translate(Vector3.right * direction * _moveSpeed * Time.deltaTime);
-            _playerAnimator.RunRunAnimation();
+            MoveInDirection(direction, _lookRightAngle);
         }
         else if (direction < 0)
         {
-            transform.rotation = Quaternion.AngleAxis(_lookLeftAngle, Vector3.up);
-            transform.Translate(Vector3.right * -direction * _moveSpeed * Time.deltaTime);
-            _playerAnimator.RunRunAnimation();
+            MoveInDirection(-direction, _lookLeftAngle);
         }
         else 
         {
             _playerAnimator.StopRunAnimation();        
         }
+    }
+
+    private void MoveInDirection(float direction, float lookAngle) 
+    {
+        transform.rotation = Quaternion.AngleAxis(lookAngle, Vector3.up);
+        transform.Translate(Vector3.right * direction * _moveSpeed * Time.deltaTime);
+        _playerAnimator.RunRunAnimation();
     }
 
     private void Jump() 
