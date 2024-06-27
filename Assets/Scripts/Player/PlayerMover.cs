@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -48,7 +49,7 @@ public class PlayerMover : MonoBehaviour
         }
         else 
         {
-            _playerAnimator.StopRunAnimation();        
+            _playerAnimator.StopRunAnimation();                 
         }
     }
 
