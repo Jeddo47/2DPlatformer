@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -19,7 +18,7 @@ public class PlayerMover : MonoBehaviour
 
     private void Awake()
     {
-        _playerRigidbody = this.GetComponent<Rigidbody2D>();
+        _playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()

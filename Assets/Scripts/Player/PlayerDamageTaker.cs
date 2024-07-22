@@ -14,7 +14,7 @@ public class PlayerDamageTaker : MonoBehaviour
         {
             _playerStats.ChangeHitPoints(-enemyStats.Damage);
             _playerAnimator.RunTakeDamageAnimation();
-            this.GetComponent<Rigidbody2D>().AddForce((transform.position - enemyStats.transform.position).normalized * _knockbackPower, ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce((transform.position - enemyStats.transform.position).normalized * _knockbackPower, ForceMode2D.Impulse);
         }
     }
 }

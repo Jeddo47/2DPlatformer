@@ -14,7 +14,7 @@ public class ItemsCollector : MonoBehaviour
         }
         else if (collision.gameObject.TryGetComponent<Fruit>(out Fruit fruit) && _playerStats.HitPoints < _playerStats.MaxHitPoints) 
         {
-            _playerStats.ChangeHitPoints(fruit.HPRegenAmount);
+            _playerStats.ChangeHitPoints(fruit.HealthRegenAmount);
             Destroy(collision.gameObject);
         }
     }

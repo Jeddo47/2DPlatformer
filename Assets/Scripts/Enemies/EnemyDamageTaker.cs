@@ -11,7 +11,7 @@ public class EnemyDamageTaker : MonoBehaviour
             collision.gameObject.TryGetComponent<CharacterStats>(out CharacterStats playerStats))
         {
             _enemyStats.ChangeHitPoints(-playerStats.Damage);
-            this.GetComponent<Rigidbody2D>().AddForce((transform.position - playerStats.transform.position).normalized * _knockbackPower, ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce((transform.position - playerStats.transform.position).normalized * _knockbackPower, ForceMode2D.Impulse);
         }
     }
 }

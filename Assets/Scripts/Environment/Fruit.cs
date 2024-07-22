@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
-    [SerializeField] private float _hpRegenAmount;
+    [SerializeField] private float _HealthRegenAmount;
 
-    public float HPRegenAmount { get { return _hpRegenAmount;} }
+    public float HealthRegenAmount { get { return _HealthRegenAmount;} }
 }
