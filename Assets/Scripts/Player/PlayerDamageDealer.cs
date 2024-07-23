@@ -10,7 +10,7 @@ public class PlayerDamageDealer : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) 
+        if (Input.GetKeyDown(KeyCode.Mouse0)) 
         {
             StartCoroutine(AttackEnemy());        
         }

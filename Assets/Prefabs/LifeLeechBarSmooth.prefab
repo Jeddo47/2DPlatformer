@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5693202915940362996
+--- !u!1001 &5943485574559734162
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 289802849670499753, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
       propertyPath: m_Name
-      value: HealthBarSmoothEnemy
+      value: LifeLeechBarSmooth
+      objectReference: {fileID: 0}
+    - target: {fileID: 3834372105957544677, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
+      propertyPath: m_Name
+      value: LifeLeechBarName
       objectReference: {fileID: 0}
     - target: {fileID: 3977028315572843113, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
       propertyPath: m_Pivot.x
@@ -96,30 +100,68 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6126143505835795985, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
+    - target: {fileID: 4925611253298492224, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
+      propertyPath: m_text
+      value: Life Leech
       objectReference: {fileID: 0}
-    - target: {fileID: 6126143505835795985, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+    - target: {fileID: 4925611253298492224, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
+      propertyPath: m_fontSize
+      value: 54.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163634483503701595, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 9187587593262436861, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
       propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9187587593262436861, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
-      propertyPath: m_Color.g
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9187587593262436861, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
-      propertyPath: m_Color.r
-      value: 0.024047613
+      propertyPath: m_Color.g
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9187587593262436861, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
+      propertyPath: m_Color.r
+      value: 0.008547783
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7963334031650088521, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
     m_RemovedGameObjects:
     - {fileID: 1403563932277473701, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
-    - {fileID: 3834372105957544677, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 289802849670499753, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8906675931636962439}
   m_SourcePrefab: {fileID: 100100000, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
+--- !u!1 &6232443724254352443 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 289802849670499753, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
+  m_PrefabInstance: {fileID: 5943485574559734162}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8906675931636962439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6232443724254352443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07cd461f0fce1d42b37a6603420f72c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeLeechBar: {fileID: 7389509629388617571}
+  _lifeLeechCaster: {fileID: 0}
+  _leechBarFillSpeed: 0
+--- !u!114 &7389509629388617571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3816606588505157361, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
+  m_PrefabInstance: {fileID: 5943485574559734162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6232443724254352443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
