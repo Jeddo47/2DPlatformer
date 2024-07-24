@@ -17,7 +17,17 @@ public class CharacterStats : MonoBehaviour
         MaxHitPoints = _hitPoints;
     }
 
-    public void ChangeHitPoints(float changeAmount)
+    public void RemoveHitPoints(float changeAmount)
+    {
+        ChangeHitPoints(changeAmount);
+    }
+
+    public void AddHitPoints(float changeAmount)
+    {
+        ChangeHitPoints(changeAmount);
+    }
+
+    private void ChangeHitPoints(float changeAmount)
     {
         _hitPoints += changeAmount;
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LifeLeechCaster : MonoBehaviour
@@ -10,14 +11,14 @@ public class LifeLeechCaster : MonoBehaviour
     [SerializeField] private float _lifeLeechTickDelay;
     [SerializeField] private CharacterStats _playerStats;
     [SerializeField] private LifeLeechAnimator _lifeLeechAnimator;
+    [SerializeField] private Vector2 _overlapAreaSize;
 
-    private CharacterStats _enemyStats;
     private bool _isLifeLeechOnCooldown;
 
     public event Action AbilityCasted;
 
     public float LifeLeechDuration { get { return _lifeLeechDuration; } }
-    public float LifeLeechCooldown { get {  return _lifeLeechCooldown; } }
+    public float LifeLeechCooldown { get { return _lifeLeechCooldown; } }
 
     private void Awake()
     {
@@ -26,25 +27,7 @@ public class LifeLeechCaster : MonoBehaviour
 
     private void Update()
     {
-        transform.position = _playerStats.transform.position;
-
         CastLifeLeech();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent<EnemyDamageTaker>(out EnemyDamageTaker enemy))
-        {
-            _enemyStats = enemy.GetComponent<CharacterStats>();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent<EnemyDamageTaker>(out _))
-        {
-            _enemyStats = null;
-        }
     }
 
     private void CastLifeLeech()
@@ -63,22 +46,42 @@ public class LifeLeechCaster : MonoBehaviour
 
         _lifeLeechAnimator.gameObject.SetActive(true);
 
-        for (int i = 0; i < _lifeLeechDuration; i++) 
+        for (int i = 0; i < _lifeLeechDuration; i++)
         {
-            if (_enemyStats != null)
+            List<CharacterStats> enemiesInRange = GetEnemiesInRange();
+            
+            foreach (var enemy in enemiesInRange)
             {
                 if (_playerStats.HitPoints < _playerStats.MaxHitPoints)
                 {
-                    _playerStats.ChangeHitPoints(_lifeLeechTickDamage);
+                    _playerStats.AddHitPoints(_lifeLeechTickDamage);
                 }
 
-                _enemyStats.ChangeHitPoints(-_lifeLeechTickDamage);
+                enemy.RemoveHitPoints(-_lifeLeechTickDamage);
             }
 
             yield return wait;
         }
 
         _lifeLeechAnimator.gameObject.SetActive(false);
+    }
+
+    private List<CharacterStats> GetEnemiesInRange()
+    {
+        Vector2 playerPosition = transform.position;
+        List<CharacterStats> enemiesInRange = new List<CharacterStats>();
+
+        Collider2D[] hits = Physics2D.OverlapAreaAll(playerPosition + _overlapAreaSize, playerPosition - _overlapAreaSize);
+
+        foreach (var hit in hits)
+        {
+            if (hit.TryGetComponent<EnemyDamageTaker>(out EnemyDamageTaker enemy))
+            {
+                enemiesInRange.Add(enemy.GetComponent<CharacterStats>());
+            }
+        }
+
+        return enemiesInRange;
     }
 
     private IEnumerator TrackCooldown()
