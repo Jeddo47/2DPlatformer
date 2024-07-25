@@ -6013,6 +6013,7 @@ GameObject:
   - component: {fileID: 533487075}
   - component: {fileID: 533487074}
   - component: {fileID: 533487076}
+  - component: {fileID: 533487082}
   - component: {fileID: 533487073}
   - component: {fileID: 533487077}
   - component: {fileID: 533487078}
@@ -6274,6 +6275,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerAnimator: {fileID: 533487077}
   _attackTime: 1.6
+--- !u!114 &533487082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533487070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6266c1c545f1741a71b21998287bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerMover: {fileID: 533487073}
+  _playerDamageDealer: {fileID: 533487081}
+  _lifeLeechCaster: {fileID: 818052229}
 --- !u!1 &627971050
 GameObject:
   m_ObjectHideFlags: 0
@@ -7728,7 +7744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeLeechDuration: 6
-  _lifeLeechCooldown: 10
+  _lifeLeechCooldown: 4
   _lifeLeechTickDamage: 5
   _lifeLeechTickDelay: 1
   _playerStats: {fileID: 533487080}

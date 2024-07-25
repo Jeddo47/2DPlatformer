@@ -8,15 +8,15 @@ public class PlayerDamageDealer : MonoBehaviour
 
     public bool IsAttacking { get; private set; }
 
-    private void Update()
+    public void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) 
+        if (IsAttacking == false)
         {
-            StartCoroutine(AttackEnemy());        
+            StartCoroutine(AttackEnemy());
         }
     }
 
-    private IEnumerator AttackEnemy() 
+    private IEnumerator AttackEnemy()
     {
         WaitForSeconds wait = new WaitForSeconds(_attackTime);
         _playerAnimator.RunAttackAnimation();

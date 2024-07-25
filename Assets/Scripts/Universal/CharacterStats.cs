@@ -19,12 +19,23 @@ public class CharacterStats : MonoBehaviour
 
     public void RemoveHitPoints(float changeAmount)
     {
-        ChangeHitPoints(changeAmount);
+        if (_hitPoints > 0) 
+        {
+            ChangeHitPoints(changeAmount);
+        }        
     }
 
     public void AddHitPoints(float changeAmount)
     {
-        ChangeHitPoints(changeAmount);
+        if (_hitPoints < MaxHitPoints) 
+        {
+            ChangeHitPoints(changeAmount);
+
+            if (_hitPoints > MaxHitPoints) 
+            {
+                _hitPoints = MaxHitPoints;           
+            }
+        }
     }
 
     private void ChangeHitPoints(float changeAmount)
@@ -32,5 +43,5 @@ public class CharacterStats : MonoBehaviour
         _hitPoints += changeAmount;
 
         HealthChanged?.Invoke();
-    }
+    }        
 }

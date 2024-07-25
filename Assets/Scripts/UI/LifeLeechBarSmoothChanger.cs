@@ -42,7 +42,7 @@ public class LifeLeechBarSmoothChanger : MonoBehaviour
 
     private IEnumerator ShowAbilityCooldown() 
     {
-        WaitForSeconds wait = new WaitForSeconds((_lifeLeechCaster.LifeLeechCooldown - _lifeLeechCaster.LifeLeechDuration) * _leechBarFillSpeed);
+        WaitForSeconds wait = new WaitForSeconds(_lifeLeechCaster.LifeLeechCooldown * _leechBarFillSpeed);
 
         while (_lifeLeechBar.value < _leechBarMaxValue)
         {

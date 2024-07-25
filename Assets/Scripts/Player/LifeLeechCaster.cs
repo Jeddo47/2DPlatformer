@@ -25,16 +25,10 @@ public class LifeLeechCaster : MonoBehaviour
         _isLifeLeechOnCooldown = false;
     }
 
-    private void Update()
+    public void CastLifeLeech()
     {
-        CastLifeLeech();
-    }
-
-    private void CastLifeLeech()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && _isLifeLeechOnCooldown == false)
-        {
-            StartCoroutine(TrackCooldown());
+        if (_isLifeLeechOnCooldown == false)
+        {            
             StartCoroutine(LeechLife());
             AbilityCasted?.Invoke();
         }
@@ -42,20 +36,25 @@ public class LifeLeechCaster : MonoBehaviour
 
     private IEnumerator LeechLife()
     {
-        WaitForSeconds wait = new WaitForSeconds(_lifeLeechTickDelay);
-
+        _isLifeLeechOnCooldown = true;
         _lifeLeechAnimator.gameObject.SetActive(true);
+
+        WaitForSeconds wait = new WaitForSeconds(_lifeLeechTickDelay);
 
         for (int i = 0; i < _lifeLeechDuration; i++)
         {
             List<CharacterStats> enemiesInRange = GetEnemiesInRange();
-            
+
             foreach (var enemy in enemiesInRange)
             {
-                if (_playerStats.HitPoints < _playerStats.MaxHitPoints)
+                if (enemy.HitPoints >= _lifeLeechTickDamage)
                 {
                     _playerStats.AddHitPoints(_lifeLeechTickDamage);
                 }
+                else 
+                {
+                    _playerStats.AddHitPoints(enemy.HitPoints);
+                }                
 
                 enemy.RemoveHitPoints(-_lifeLeechTickDamage);
             }
@@ -64,6 +63,8 @@ public class LifeLeechCaster : MonoBehaviour
         }
 
         _lifeLeechAnimator.gameObject.SetActive(false);
+
+        StartCoroutine(TrackCooldown());
     }
 
     private List<CharacterStats> GetEnemiesInRange()
@@ -86,9 +87,7 @@ public class LifeLeechCaster : MonoBehaviour
 
     private IEnumerator TrackCooldown()
     {
-        WaitForSeconds wait = new WaitForSeconds(_lifeLeechCooldown);
-
-        _isLifeLeechOnCooldown = true;
+        WaitForSeconds wait = new WaitForSeconds(_lifeLeechCooldown);                
 
         yield return wait;
 
