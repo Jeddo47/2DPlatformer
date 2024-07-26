@@ -12,7 +12,7 @@ public class PlayerDamageTaker : MonoBehaviour
         if (collision.gameObject.TryGetComponent<EnemyDamageDealer>(out _) && collision.gameObject.TryGetComponent<CharacterStats>(out CharacterStats enemyStats) && 
             _playerDamageDealer.IsAttacking == false) 
         {
-            _playerStats.RemoveHitPoints(-enemyStats.Damage);
+            _playerStats.RemoveHitPoints(enemyStats.Damage);
             _playerAnimator.RunTakeDamageAnimation();
             GetComponent<Rigidbody2D>().AddForce((transform.position - enemyStats.transform.position).normalized * _knockbackPower, ForceMode2D.Impulse);
         }

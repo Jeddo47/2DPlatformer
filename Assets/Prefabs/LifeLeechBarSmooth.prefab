@@ -133,6 +133,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 289802849670499753, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8906675931636962439}
+    - targetCorrespondingSourceObject: {fileID: 289802849670499753, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7363767147298351196}
   m_SourcePrefab: {fileID: 100100000, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}
 --- !u!1 &6232443724254352443 stripped
 GameObject:
@@ -152,8 +155,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeLeechBar: {fileID: 7389509629388617571}
+  _abilityTracker: {fileID: 7363767147298351196}
+--- !u!114 &7363767147298351196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6232443724254352443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c7c0ce74dda3440be961894d6d72c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _lifeLeechCaster: {fileID: 0}
-  _leechBarFillSpeed: 0
+  _leechBarFillSpeed: 0.1
 --- !u!114 &7389509629388617571 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3816606588505157361, guid: b8dc723f19bc24345bfb9759cbba30fc, type: 3}

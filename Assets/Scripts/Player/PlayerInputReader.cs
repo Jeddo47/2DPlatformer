@@ -1,49 +1,73 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInputReader : MonoBehaviour
 {
     private const string Horizontal = nameof(Horizontal);
 
-    [SerializeField] private PlayerMover _playerMover;
-    [SerializeField] private PlayerDamageDealer _playerDamageDealer;
-    [SerializeField] private LifeLeechCaster _lifeLeechCaster;
+    private bool _isJumping;
+    private bool _isAttacking;
+    private bool _isCasting;
 
-    void Update()
+    public float Direction { get; private set; }
+
+    private void Update()
     {
-        Move();
-        Jump();
-        Attack();
-        CastLifeLeech();
+        ReadMove();
+        ReadJump();
+        ReadAttack();
+        ReadCastLifeLeech();
     }
 
-    private void Move()
+    public bool GetIsJumping()
     {
-        _playerMover.Move(Input.GetAxis(Horizontal));
+        return GetBoolValue(ref _isJumping);
     }
 
-    private void Jump()
+    public bool GetIsAttacking() 
+    {
+        return GetBoolValue(ref _isAttacking);
+    }
+
+    public bool GetIsCasting() 
+    {
+        return GetBoolValue(ref _isCasting);
+    }
+
+    private bool GetBoolValue(ref bool boolValue)
+    {
+        bool currentValue = boolValue;
+
+        boolValue = false;
+
+        return currentValue;
+    }
+
+    private void ReadMove()
+    {
+        Direction = Input.GetAxis(Horizontal);
+    }
+
+    private void ReadJump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _playerMover.Jump();
+            _isJumping = true;
         }
     }
 
-    private void Attack() 
+    private void ReadAttack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) 
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            _playerDamageDealer.Attack();
-        }            
+            _isAttacking = true;
+        }
     }
 
-    private void CastLifeLeech() 
+    private void ReadCastLifeLeech()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1)) 
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            _lifeLeechCaster.CastLifeLeech();        
-        }   
+            _isCasting = true;
+        }
     }
 }

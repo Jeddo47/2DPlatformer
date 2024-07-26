@@ -17,8 +17,8 @@ public class LifeLeechCaster : MonoBehaviour
 
     public event Action AbilityCasted;
 
-    public float LifeLeechDuration { get { return _lifeLeechDuration; } }
-    public float LifeLeechCooldown { get { return _lifeLeechCooldown; } }
+    public float LifeLeechDuration => _lifeLeechDuration;
+    public float LifeLeechCooldown => _lifeLeechCooldown;
 
     private void Awake()
     {
@@ -56,7 +56,7 @@ public class LifeLeechCaster : MonoBehaviour
                     _playerStats.AddHitPoints(enemy.HitPoints);
                 }                
 
-                enemy.RemoveHitPoints(-_lifeLeechTickDamage);
+                enemy.RemoveHitPoints(_lifeLeechTickDamage);
             }
 
             yield return wait;
